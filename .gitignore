@@ -18,7 +18,6 @@
 .env.test.local
 .env.production.local
 /.vs
-/letterboxt.zip
 
 npm-debug.log*
 yarn-debug.log*
