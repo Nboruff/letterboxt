@@ -1,3 +1,3 @@
 #!/bin/bash
-cd /home/ec2-user/server/src
+cd /var/www/html/letterboxt/
 npm runs start  > /dev/null 2>&1 &
