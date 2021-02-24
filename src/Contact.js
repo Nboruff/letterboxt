@@ -5,7 +5,7 @@ class Contact extends Component {
         return (
             <div>
                 <h2>GOT QUESTIONS?</h2>
-                <p>Go to the <a href="tmdb.org">TMDB</a> website</p>
+                <p>Go to the <a href="https://www.themoviedb.org/">TMDB</a> website</p>
             </div>
         );
     }
