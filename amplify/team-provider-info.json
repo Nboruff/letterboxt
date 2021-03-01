@@ -10,6 +10,11 @@
       "StackName": "amplify-letterboxtreal-dev-130629",
       "StackId": "arn:aws:cloudformation:us-east-2:333150945130:stack/amplify-letterboxtreal-dev-130629/59a7c170-785d-11eb-9bfc-027a8c6cb26e",
       "AmplifyAppId": "d23vomlpyiu0w3"
+    },
+    "categories": {
+      "auth": {
+        "letterboxtreald70f1896": {}
+      }
     }
   }
 }

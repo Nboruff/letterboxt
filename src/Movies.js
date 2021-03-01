@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import themoviedb from "./TMDB_js/themoviedb"
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
-import DropdownButton from 'react-bootstrap/DropdownButton'
-import Dropdown from 'react-bootstrap/Dropdown'
-import ListGroup from 'react-bootstrap/ListGroup'
-import ListGroupItem from 'react-bootstrap/ListGroupItem'
+import {DropdownButton, Dropdown} from 'react-bootstrap/'
+import {List, ListItem, Checkbox} from "@material-ui/core"
+import VisibilityIcon from '@material-ui/icons/Visibility'
+import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined'
 
+let once = 0
 themoviedb.common.api_key = "b992795e34345ff9d9aaaaf6f58b75c2"
 var list_of_genres = {
     '0' : "Genre",
@@ -30,6 +31,7 @@ var list_of_genres = {
     '37' : "Western"
 }
 
+var titles = {}
 class Movies extends Component {
     constructor(props) {
         super(props)
@@ -68,12 +70,21 @@ class Movies extends Component {
         })
     } 
 
+    handleWatchedCheck = (info) => {
+        console.log(info.title)
+    }
+
     render() {
         if(this.state.movies.length > 0){
 
             var movies = this.state.movies.map((value, index, array) =>{
+                for(let i = 0; i < array.length; ++i){
+                    
+                }
                 return (
-                    <ListGroupItem key={value.id} href={"#/movies/" + value.id}>{value.title}</ListGroupItem>
+                    <ListItem key={value.id} href={"#/movies/" + value.id}>{value.title}
+                        <Checkbox onClick={this.handleWatchedCheck.bind(this,value)} icon={<VisibilityOutlinedIcon/>} checkedIcon={<VisibilityIcon/>}></Checkbox>
+                    </ListItem>
                     )
                 })
         }
@@ -108,35 +119,12 @@ class Movies extends Component {
                     <Dropdown.Item eventKey='37'>Western</Dropdown.Item>
                     <Dropdown.Divider />
                 </DropdownButton>
-                <ListGroup>
+                <List>
                     {movies}
-                </ListGroup>
+                </List>
             </div>
         );
     }
 }
 
 export default Movies;
-
-
-/** MOVIE
-Action          28
-Adventure       12
-Animation       16
-Comedy          35
-Crime           80
-Documentary     99
-Drama           18
-Family          10751
-Fantasy         14
-History         36
-Horror          27
-Music           10402
-Mystery         9648
-Romance         10749
-Science Fiction 878
-TV Movie        10770
-Thriller        53
-War             10752
-Western         37
- */

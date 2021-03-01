@@ -3,6 +3,11 @@ import { Route, NavLink, HashRouter } from "react-router-dom";
 import Home from "./Home.js";
 import Movies from "./Movies.js";
 import Contact from "./Contact.js";
+import Amplify, { Auth } from 'aws-amplify'
+import awsconfig from './aws-exports'
+import { withAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
+
+Amplify.configure(awsconfig)
 
 class Main extends Component {
     render() {
@@ -20,10 +25,14 @@ class Main extends Component {
                         <Route path="/movies" component={Movies} />
                         <Route path="/contact" component={Contact} />
                     </div>
+                </div>    
+                <div>
+                    <AmplifySignOut />
                 </div>
             </HashRouter>
+            
         );
     }
 }
 
-export default Main;
+export default withAuthenticator(Main);

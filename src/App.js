@@ -1,8 +1,8 @@
-import logo from './logo.svg';
-import './App.css';
-import Amplify, { Storage } from 'aws-amplify';
-import awsconfig from './aws-exports';
-Amplify.configure(awsconfig);
+import logo from './logo.svg'
+import './App.css'
+import Amplify, { API, graphqlOperation } from 'aws-amplify'
+import awsconfig from './aws-exports'
+import { createTodo } from "./graphql/mutations"
 
 function App() {
   return (
