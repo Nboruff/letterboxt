@@ -6,8 +6,7 @@ import {List, ListItem, Checkbox} from "@material-ui/core"
 import VisibilityIcon from '@material-ui/icons/Visibility'
 import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined'
 
-let once = 0
-themoviedb.common.api_key = "b992795e34345ff9d9aaaaf6f58b75c2"
+
 var list_of_genres = {
     '0' : "Genre",
     '28': "Action",
@@ -19,7 +18,7 @@ var list_of_genres = {
     '18': "Drama",
     '10751' : "Family",
     '14' : "Fantasy",
-     '36' : "History",
+    '36' : "History",
     '27' : "Horror",
     '10402' : "Music",
     '9648' : "Mystery",
@@ -31,7 +30,6 @@ var list_of_genres = {
     '37' : "Western"
 }
 
-var titles = {}
 class Movies extends Component {
     constructor(props) {
         super(props)
@@ -44,7 +42,7 @@ class Movies extends Component {
 
     getGenreMovies = (genre) => {
         var self = this
-        console.log(themoviedb.discover.getMovies(
+        themoviedb.discover.getMovies(
             {
                 sort_by: 'popularity.desc',
                 with_genres: genre
@@ -60,7 +58,7 @@ class Movies extends Component {
             function (error) {
                 // do something with errorCallback
                 console.error(error)
-            }))
+            })
         
     }
     handleSelection = (genre) => {
@@ -75,6 +73,7 @@ class Movies extends Component {
     }
 
     render() {
+ 
         if(this.state.movies.length > 0){
 
             var movies = this.state.movies.map((value, index, array) =>{
@@ -90,6 +89,7 @@ class Movies extends Component {
         }
         console.log(this.state.movies)
         return (
+
             <div className="MoviesByGenre">
                 <h2>MOVIES</h2>
                 <DropdownButton 
