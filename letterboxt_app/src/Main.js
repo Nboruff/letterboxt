@@ -9,9 +9,22 @@ require('dotenv').config()
 const TMDB_KEY = process.env.REACT_APP_TMDB_KEY
 
 themoviedb.common.api_key = TMDB_KEY
-console.log(TMDB_KEY)
 
 class Main extends Component {
+    constructor(props){
+        super(props)
+        this.state = { apiResponse: "" }
+    }
+
+    callAPI() {
+        fetch("http://localhost:9000/testAPI")
+            .then(res => res.text())
+            .then(res => this.setState({ apiResponse: res }))
+    }
+
+    componentWillMount() {
+        this.callAPI()
+    }
     render() {
         return (
             <HashRouter>
@@ -27,6 +40,7 @@ class Main extends Component {
                         <Route path="/movies" component={Movies} />
                         <Route path="/contact" component={Contact} />
                     </div>
+                    <p className="App-intro">;{this.state.apiResponse}</p>
                 </div>    
                 <div>
                 </div>
