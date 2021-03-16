@@ -4,7 +4,9 @@ import themoviedb from "./TMDB_js/themoviedb"
 import Home from "./Home.js";
 import Movies from "./Movies.js";
 import Contact from "./Contact.js";
+import App from "./App"
 require('dotenv').config()
+
 
 const TMDB_KEY = process.env.REACT_APP_TMDB_KEY
 
@@ -44,6 +46,7 @@ class Main extends Component {
                 </div>    
                 <div>
                 </div>
+                <App/>
             </HashRouter>
             
         );
