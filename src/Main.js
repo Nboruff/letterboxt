@@ -3,8 +3,7 @@ import { Route, NavLink, HashRouter } from "react-router-dom";
 import themoviedb from "./TMDB_js/themoviedb"
 import Home from "./Home.js";
 import Movies from "./Movies.js";
-import Contact from "./Contact.js";
-import App from "./App"
+import Login from "./Login.js";
 require('dotenv').config()
 
 
@@ -35,18 +34,17 @@ class Main extends Component {
                     <ul className="header">
                         <li><NavLink to="/home">Home</NavLink></li>
                         <li><NavLink to="/movies">Movies</NavLink></li>
-                        <li><NavLink to="/contact">Contact</NavLink></li>
+                        <li><NavLink to="/login">Login</NavLink></li>
                     </ul>
                     <div className="content">
                         <Route path="/home" component={Home}/>
                         <Route path="/movies" component={Movies} />
-                        <Route path="/contact" component={Contact} />
+                        <Route path="/login" component={Login} />
                     </div>
                     <p className="App-intro">;{this.state.apiResponse}</p>
                 </div>    
                 <div>
                 </div>
-                <App/>
             </HashRouter>
             
         );
