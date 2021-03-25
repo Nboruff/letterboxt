@@ -1,7 +1,10 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { Component} from "react";
+import { Route, NavLink, HashRouter, useRouteMatch} from "react-router-dom";
+import CreateAccountRoute from "./CreateAccountRoute"
 
 class Login extends Component {
     constructor(props) {
+        
         super(props)
         this.state = { 
             username: "",
@@ -70,19 +73,23 @@ class Login extends Component {
     // }
     render(){
         return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Username:
-                    <input type="text" value={this.state.username} onChange={this.handleUserField}/>
-                    <input type="password" value={this.state.password} onChange={this.handlePasswordField}/>
+            <HashRouter>
+                <div>
+                    <form onSubmit={this.handleSubmit}>
+                        <label>
+                            Username:
+                        <input type="text" value={this.state.username} onChange={this.handleUserField}/>
+                        <input type="password" value={this.state.password} onChange={this.handlePasswordField}/>
 
-                    </label>
-                    <input type="submit" value="Login"/>
-                </form>
-                <br />
-                <button onClick={this.handleLogin}>Create Account</button>
-            </div>
+                        </label>
+                        <input type="submit" value="Login"/>
+                    </form>
+                    <br />
+                </div>
+                <div>
+                    <CreateAccountRoute/>
+                </div>
+            </HashRouter>
         );
     }
 }

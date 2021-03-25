@@ -7,27 +7,27 @@ import VisibilityIcon from '@material-ui/icons/Visibility'
 import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined'
 
 
-var list_of_genres = {
-    '0' : "Genre",
-    '28': "Action",
-    '12': "Adventure" ,
-    '16': "Animation",
-    '35': "Comedy",
-    '80': "Crime",
-    '99': "Documentary",
-    '18': "Drama",
-    '10751' : "Family",
-    '14' : "Fantasy",
-    '36' : "History",
-    '27' : "Horror",
-    '10402' : "Music",
-    '9648' : "Mystery",
-    '10749' : "Romance",
-    '878': "Science Fiction",
-    '10770' : "TV Movie",
-    '53' : "Thriller",
-    '10752' : "War",
-    '37' : "Western"
+let list_of_genres = {
+    0  : "Genre",
+    28 : "Action",
+    12 : "Adventure" ,
+    16 : "Animation",
+    35 : "Comedy",
+    80 : "Crime",
+    99 : "Documentary",
+    18 : "Drama",
+    10751 : "Family",
+    14 : "Fantasy",
+    36 : "History",
+    27 : "Horror",
+    10402 : "Music",
+    9648 : "Mystery",
+    10749 : "Romance",
+    878: "Science Fiction",
+    10770 : "TV Movie",
+    53 : "Thriller",
+    10752 : "War",
+    37 : "Western"
 }
 
 class Movies extends Component {
@@ -98,25 +98,10 @@ class Movies extends Component {
                     id ="dropdown-menu-align-right"
                     onSelect={this.handleSelection}
                         >
-                    <Dropdown.Item eventKey='28'>Action</Dropdown.Item>
-                    <Dropdown.Item eventKey='12'>Adventure</Dropdown.Item>
-                    <Dropdown.Item eventKey='16'>Animation</Dropdown.Item>
-                    <Dropdown.Item eventKey='35'>Comedy</Dropdown.Item>
-                    <Dropdown.Item eventKey='80'>Crime</Dropdown.Item>
-                    <Dropdown.Item eventKey='99'>Documentary</Dropdown.Item>
-                    <Dropdown.Item eventKey='18'>Drama</Dropdown.Item>
-                    <Dropdown.Item eventKey='10751'>Family</Dropdown.Item>
-                    <Dropdown.Item eventKey='14'>Fantasy</Dropdown.Item>
-                    <Dropdown.Item eventKey='36'>History</Dropdown.Item>
-                    <Dropdown.Item eventKey='27'>Horror</Dropdown.Item>
-                    <Dropdown.Item eventKey='10402'>Music</Dropdown.Item>
-                    <Dropdown.Item eventKey='9648'>Mystery</Dropdown.Item>
-                    <Dropdown.Item eventKey='10749'>Romance</Dropdown.Item>
-                    <Dropdown.Item eventKey='878'>Science Fiction</Dropdown.Item>
-                    <Dropdown.Item eventKey='10770'>TV Movie</Dropdown.Item>
-                    <Dropdown.Item eventKey='53'>Thriller</Dropdown.Item>
-                    <Dropdown.Item eventKey='10752'>Drama</Dropdown.Item>
-                    <Dropdown.Item eventKey='37'>Western</Dropdown.Item>
+                            {Object.entries(list_of_genres).map(key =>(
+                                <Dropdown.Item eventKey={key}>{list_of_genres[key]}</Dropdown.Item>
+                            ))}
+
                     <Dropdown.Divider />
                 </DropdownButton>
                 <List>
