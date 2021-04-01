@@ -4,6 +4,7 @@ import themoviedb from "./TMDB_js/themoviedb"
 import Home from "./Home.js";
 import Movies from "./Movies.js";
 import Login from "./Login.js";
+import CreateAccount from "./CreateAccount"
 require('dotenv').config()
 
 
@@ -35,11 +36,13 @@ class Main extends Component {
                         <li><NavLink to="/home">Home</NavLink></li>
                         <li><NavLink to="/movies">Movies</NavLink></li>
                         <li><NavLink to="/login">Login</NavLink></li>
+                        <li><NavLink to="/createaccount">Create Account</NavLink></li>
                     </ul>
                     <div className="content">
                         <Route path="/home" component={Home}/>
                         <Route path="/movies" component={Movies} />
                         <Route path="/login" component={Login} />
+                        <Route path="/createaccount" component={CreateAccount} />
                     </div>
                     <p className="App-intro">;{this.state.apiResponse}</p>
                 </div>    

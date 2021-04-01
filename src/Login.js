@@ -8,7 +8,6 @@ class Login extends Component {
         super(props)
         this.state = { 
             username: "",
-            setUsers: "",
             password: ""
         };
     }
@@ -19,7 +18,7 @@ class Login extends Component {
         })
         .then(data => {
             this.setState({
-                setUsers: data
+                username: data
             });
         });
     }
@@ -87,7 +86,7 @@ class Login extends Component {
                     <br />
                 </div>
                 <div>
-                    <CreateAccountRoute/>
+                    {/* <CreateAccountRoute/> */}
                 </div>
             </HashRouter>
         );
