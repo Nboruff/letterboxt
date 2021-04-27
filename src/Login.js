@@ -1,96 +1,103 @@
-import React, { Component} from "react";
+import React, {useState, useEffect} from "react";
 import { Route, NavLink, HashRouter, useRouteMatch} from "react-router-dom";
-import CreateAccountRoute from "./CreateAccountRoute"
+import { Alert } from 'react-bootstrap'
 
-class Login extends Component {
-    constructor(props) {
-        
-        super(props)
-        this.state = { 
-            username: "",
-            password: ""
-        };
-    }
-    getUser = () => {
-        fetch('http://localhost:9000')
+function Login(props) {
+    const [username, setUser] = useState("");
+    const [password, setPassword] = useState("");
+    const [is_empty, setIsEmpty] = useState(false)
+     
+    const getUser = () => {
+        fetch('http://localhost:9001/users')
         .then(response => {
-            return response.text();
+            return response.json();
         })
         .then(data => {
-            this.setState({
-                username: data
-            });
+            console.log(data)
         });
     }
-    createUser = (username, password) => {
-        fetch('http://localhost:9000/users', {
+    // const createUser = (username, password) => {
+    //     fetch('http://localhost:9001/users', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify({ username, password }),
+    //     })
+    //     .then(response => {
+    //         return response.text();
+    //     })
+    //     .then(data => {
+    //         alert(data);
+    //         this.getUser();
+    //     });
+    // }
+
+    const checkUser = () => {
+        return fetch('http://localhost:9001/users/check', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({ username, password }),
         })
-        .then(response => {
-            return response.text();
-        })
-        .then(data => {
-            alert(data);
-            this.getUser();
-        });
+            .then(response => {
+                return response.text();
+            })
+            .then(data => {
+                console.log(data)
+                return data;
+            });
     }
 
-    handleSubmit = (ev) => {
-        alert('A name was submitted: ' + this.state.username);
-        this.createUser(this.state.username, this.state.password)
-        ev.preventDefault();
+    const handleSubmit = async (ev) => {
+        var c = checkUser()
+        var answer = await c.then((result) => { return result })
+        if (!username.trim() || username === "") {
+            setIsEmpty(true)
+        }
+        else if (!password.trim() || password === "") {
+            setIsEmpty(true)
+        }
+        else if (answer === '0') {
+            console.log("Username or password did not match records")
+        } else {
+            console.log("username and password matched")
+            setIsEmpty(false)
+        }
+
     }
 
-    handleUserField = (ev) => {
-        this.setState({username: ev.target.value})
+    const handleUserField = (ev) => {
+        setUser(ev.target.value)
     }
-    handlePasswordField = (ev) => {
-        this.setState({password: ev.target.value})
+    const handlePasswordField = (ev) => {
+        setPassword(ev.target.value)
     }
-    handleLogin = () => {
-        
-    }
-    componentDidMount(){
-        this.getUser()
-    }
-    // function deleteUser() {
-    //     let id = prompt('Enter user id');
-    //     fetch(`http://localhost:9000/users/${id}`, {
-    //         method: 'DELETE',
-    //     })
-    //         .then(response => {
-    //             return response.text();
-    //         })
-    //         .then(data => {
-    //             alert(data);
-    //             getUser();
-    //         });
-    // }
-    render(){
-        return (
-            <HashRouter>
-                <div>
-                    <form onSubmit={this.handleSubmit}>
-                        <label>
-                            Username:
-                        <input type="text" value={this.state.username} onChange={this.handleUserField}/>
-                        <input type="password" value={this.state.password} onChange={this.handlePasswordField}/>
-
-                        </label>
-                        <input type="submit" value="Login"/>
-                    </form>
-                    <br />
-                </div>
-                <div>
-                    {/* <CreateAccountRoute/> */}
-                </div>
-            </HashRouter>
-        );
-    }
+    return (
+        <HashRouter>
+            <Alert variant="danger" hidden={!is_empty}>Username or Password field is empty. Please fill in all fields</Alert>
+            <div>
+                <form onSubmit={handleSubmit}>
+                    <label>
+                        Username:
+                        <input type="text" value={username} onChange={handleUserField}/>
+                    </label>
+                    <br/>
+                    <label>
+                        Password:
+                        <input type="password" value={password} onChange={handlePasswordField}/>
+                    </label>
+                    <input type="submit" value="Login"/>
+                </form>
+                <button onClick={getUser}>Get User</button>
+                <br />
+            </div>
+            <div>
+                {/* <CreateAccountRoute/> */}
+            </div>
+        </HashRouter>
+    );
 }
 
 export default Login;

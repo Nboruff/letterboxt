@@ -16,8 +16,18 @@ router.use(function (req, res, next) {
   next();
 });
 
+router.post('/check',(req, res) => {
+  user_model.checkUser(req.body)
+    .then(response => {
+      res.status(200).send(response)
+    })
+    .catch(error => {
+      res.status(500).send(error)
+    })
+  
+})
 router.get('/', (req, res) => {
-  user_model.getUsers()
+  user_model.getUser()
     .then(response => {
       res.status(200).send(response);
     })
@@ -29,6 +39,8 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   user_model.createUser(req.body)
     .then(response => {
+      console.log("i fucking ran 2")
+
       res.status(200).send(response);
     })
     .catch(error => {
@@ -45,4 +57,5 @@ router.delete('/:id', (req, res) => {
       res.status(500).send(error);
     })
 })
+
 module.exports = router;

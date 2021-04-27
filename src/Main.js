@@ -14,8 +14,8 @@ themoviedb.common.api_key = TMDB_KEY
 
 class Main extends Component {
     constructor(props){
-        super(props)
-        this.state = { apiResponse: "" }
+        super(props);
+        this.state = { apiResponse: "" };
     }
 
     callAPI() {
@@ -25,7 +25,7 @@ class Main extends Component {
     }
 
     componentWillMount() {
-        this.callAPI()
+        this.callAPI();
     }
     render() {
         return (

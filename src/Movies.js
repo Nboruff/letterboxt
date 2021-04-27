@@ -62,14 +62,14 @@ class Movies extends Component {
         
     }
     handleSelection = (genre) => {
-        this.getGenreMovies(genre)
+        this.getGenreMovies(genre);
         this.setState({
             selectValue: genre,
-        })
+        });
     } 
 
     handleWatchedCheck = (info) => {
-        console.log(info.title)
+        console.log(info.title);
     }
 
     render() {
@@ -84,10 +84,10 @@ class Movies extends Component {
                     <ListItem key={value.id} href={"#/movies/" + value.id}>{value.title}
                         <Checkbox onClick={this.handleWatchedCheck.bind(this,value)} icon={<VisibilityOutlinedIcon/>} checkedIcon={<VisibilityIcon/>}></Checkbox>
                     </ListItem>
-                    )
-                })
+                    );
+                });
         }
-        console.log(this.state.movies)
+        console.log(this.state.movies);
         return (
 
             <div className="MoviesByGenre">
